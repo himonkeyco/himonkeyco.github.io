@@ -5,6 +5,18 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+
+ @font-face {
+  font-family: 'bebas_neueregular';
+  src: url('../fonts/bebasneue-regular-webfont.woff2') format('woff2'),
+       url('../fonts/bebasneue-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -33,7 +45,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 1200px;
   --breakpoint-xl: 1600px;
-  --font-family-sans-serif: "Roboto", sans-serif;
+  --font-family-sans-serif: bebas_neueregular;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 
 *,
@@ -42,17 +54,18 @@
   box-sizing: border-box; }
 
 html {
-  font-family: sans-serif;
+  font-family: bebas_neueregular;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
 
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block; }
 
 body {
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: bebas_neueregular;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -71,7 +84,9 @@ hr {
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5em; }
-
+h2 {
+  font-size: 3rem!important;
+}
 p {
   margin-top: 0;
   margin-bottom: 1rem; }
@@ -297,7 +312,7 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5em;
-  font-family: "Lato", sans-serif;
+  font-family: bebas_neueregular;
   font-weight: 400;
   line-height: 1.2;
   color: #000; }
@@ -1743,8 +1758,8 @@ textarea.form-control {
   user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
-  padding: 0.875rem 1.75rem;
-  font-size: 0.875rem;
+  padding: 0.750rem 1.50rem;
+  font-size: 1.5rem;
   line-height: 1.5;
   border-radius: 0;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
@@ -4070,7 +4085,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Roboto", sans-serif;
+  font-family: bebas_neueregular;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -4154,7 +4169,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", bebas_neueregular;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -10370,8 +10385,8 @@ dt {
 
 .eyebrow {
   display: inline-block;
-  font-size: 0.75rem;
-  font-family: "Lato", sans-serif;
+  font-size: 1rem;
+  font-family: bebas_neueregular;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: .1em; }
@@ -10626,7 +10641,7 @@ dt {
     bottom: 0.625rem;
     left: 0.625rem; }
   .card-product .card-title {
-    font-size: 1rem;
+    font-size: 1.25rem;
     margin-bottom: 0; }
   .card-product .card-body {
     position: absolute;
@@ -10677,8 +10692,8 @@ dt {
     font-size: 0.875rem;
     color: #999999; }
   .card-product .price {
-    font-size: 0.875rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 400;
     color: #000; }
     .card-product .price s {
       font-weight: 400;
@@ -12066,9 +12081,10 @@ dt {
   -moz-transition-delay: 0s;
   transition-delay: 0s;
   text-transform: uppercase;
-  font-weight: 700;
   outline: none;
-  z-index: 50; }
+  z-index: 50; 
+  font-size: 20px;
+}
 
 .navbar-nav .nav-icon {
   display: block;
@@ -12241,7 +12257,7 @@ img {
     margin-top: 0.625rem; }
 
 .product-title {
-  font-family: "Roboto", sans-serif;
+  font-family: bebas_neueregular;
   font-size: 0.875rem;
   margin-bottom: 0; }
   .product-title a {
@@ -13165,7 +13181,7 @@ fieldset .select-frame {
 
 .interpost {
   font-size: 1rem;
-  font-family: "Roboto", sans-serif; }
+  font-family: bebas_neueregular; }
   .interpost a {
     -webkit-transition: all 0.2s;
     -moz-transition: all 0.2s;

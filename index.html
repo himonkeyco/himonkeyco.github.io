@@ -317,9 +317,9 @@
           <form action="https://HIMONKEY.us6.list-manage.com/subscribe/post-json?u=78443e9f748ec9c558d3d817e&amp;id=2392de4950&c=?" method="GET" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
             <h4 class="eyebrow mb-1">Subscribe to Newsletter</h4>
             <div class="input-combined mb-2">
-              <input type="email" name="EMAIL" class="email form-control" id="email" placeholder="Your Email" required>
+              <input type="email" value="" name="EMAIL" class="email required form-control" id="mce-EMAIL" placeholder="Enter Your Email" required>
               <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_78443e9f748ec9c558d3d817e_2392de4950" tabindex="-1" value=""></div>
-              <button class="btn btn-white" type="submit" id="button-addon2">Subscribe</button>
+              <button class="btn btn-white" value="Subscribe" type="submit" name="subscribe" id="mc-embedded-subscribe">Subscribe</button>
               <span class="input-combined_indicator"></span>
             </div>
           </form>
@@ -343,10 +343,10 @@
     <script src="assets/js/app.js"></script>
     <script>$(document).ready( function () {
       // I only have one form on the page but you can be more specific if need be.
-      var $form = $('mc-embedded-subscribe-form');
+      var $form = $('mc-embedded-subscribe');
   
       if ( $form.length > 0 ) {
-        $('form input[type="submit"]').bind('click', function ( event ) {
+        $('form input[type="email"]').bind('click', function ( event ) {
             if ( event ) event.preventDefault();
             // validate_input() is a validation function I wrote, you'll have to substitute this with your own.
             if ( validate_input($form) ) { register($form); }

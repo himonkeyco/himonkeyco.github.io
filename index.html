@@ -315,10 +315,10 @@
 
         <!-- subscribe -->
         <div class="order-2 order-md-3 order-lg-2 col-md-8 col-lg-4">
-          <form action="assets/js/mailchimp.php" method="POST" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+          <form action="index.html" method="GET" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
             <h4 class="eyebrow mb-1">Subscribe to Newsletter</h4>
             <div class="input-combined mb-2">
-              <input type="email" name="EMAIL_ADDRESS" class="email form-control" id="mce-EMAIL" placeholder="Your Email" required>
+              <input type="email" name="email" class="email form-control" id="email" placeholder="Your Email" required>
               <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_78443e9f748ec9c558d3d817e_2392de4950" tabindex="-1" value=""></div>
               <button class="btn btn-white" type="submit" id="button-addon2">Subscribe</button>
               <span class="input-combined_indicator"></span>
@@ -342,6 +342,28 @@
 
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.js"></script>
+    <script>
+			$(document).ready(function() {
+			    $('#mc-embedded-subscribe-form').submit(function() {
+			        $("#input-combined_indicator").html("Adding your email address...");
+			        $.ajax({
+			            url: '/assets/js/mailchimp.php',
+			            type: "POST",
+			            data: $('#mc-embedded-subscribe-form').serialize(),
+			            success: function(msg) 
+			            {
+			                $('#input-combined_indicator').html("<i class='fa fa-check'></i> Thanks for signing up!");
+			            },
+			            error: function(msg) 
+			            {
+			                $('#input-combined_indicator').html("<span style='color: red;'><i class='fa fa-times'></i> Error. Please try again later.</span>");
+			                console.log(arguments);
+			            }
+			        });
+			        return false;
+			    });
+			});
+			</script>
   </body>
 </html>
 

@@ -314,7 +314,7 @@
         <div class="row footer">
         <!-- subscribe -->
         <div class="order-2 order-md-3 order-lg-2 col-md-8 col-lg-4">
-          <form action="https://HIMONKEY.us6.list-manage.com/subscribe/post-json?u=78443e9f748ec9c558d3d817e&amp;id=2392de4950" method="GET" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+          <form action="https://HIMONKEY.us6.list-manage.com/subscribe/post-json?u=78443e9f748ec9c558d3d817e&amp;id=2392de4950&c=?" method="GET" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
             <h4 class="eyebrow mb-1">Subscribe to Newsletter</h4>
             <div class="input-combined mb-2">
               <input type="email" name="EMAIL" class="email form-control" id="email" placeholder="Your Email" required>
@@ -365,7 +365,7 @@
           error       : function(err) { alert("Could not connect to the registration server. Please try again later."); },
           success     : function(data) {
               if (data.result != "success") {
-                  // Something went wrong, do something to notify the user. maybe alert(data.msg);
+                $('#input-combined_indicator').html("<i class='fa fa-check'></i> Thanks for signing up!");
               } else {
                   // It worked, carry on...
               }

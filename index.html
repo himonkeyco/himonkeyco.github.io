@@ -312,15 +312,14 @@
     <footer class="bg-dark pb-0 text-white">
       <div class="container">
         <div class="row footer">
-
         <!-- subscribe -->
         <div class="order-2 order-md-3 order-lg-2 col-md-8 col-lg-4">
-          <form action="index.html" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+          <form action="https://HIMONKEY.us6.list-manage.com/subscribe/post-json?u=78443e9f748ec9c558d3d817e&amp;id=2392de4950" method="GET" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
             <h4 class="eyebrow mb-1">Subscribe to Newsletter</h4>
             <div class="input-combined mb-2">
-              <input type="email" name="email" class="email form-control" id="email" placeholder="Your Email" required>
+              <input type="email" name="EMAIL" class="email form-control" id="email" placeholder="Your Email" required>
               <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_78443e9f748ec9c558d3d817e_2392de4950" tabindex="-1" value=""></div>
-              <button class="btn btn-white" type="button" id="button-addon2">Subscribe</button>
+              <button class="btn btn-white" type="submit" id="button-addon2">Subscribe</button>
               <span class="input-combined_indicator"></span>
             </div>
           </form>
@@ -342,28 +341,37 @@
 
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.js"></script>
-    <script>
-			$(document).ready(function() {
-			    $('#mc-embedded-subscribe-form').submit(function() {
-			        $("#input-combined_indicator").html("Adding your email address...");
-			        $.ajax({
-			            url: '/assets/js/mailchimp.php',
-			            type: "POST",
-			            data: $('#mc-embedded-subscribe-form').serialize(),
-			            success: function(msg) 
-			            {
-			                $('#input-combined_indicator').html("<i class='fa fa-check'></i> Thanks for signing up!");
-			            },
-			            error: function(msg) 
-			            {
-			                $('#input-combined_indicator').html("<span style='color: red;'><i class='fa fa-times'></i> Error. Please try again later.</span>");
-			                console.log(arguments);
-			            }
-			        });
-			        return false;
-			    });
-			});
-			</script>
+    <script>$(document).ready( function () {
+      // I only have one form on the page but you can be more specific if need be.
+      var $form = $('mc-embedded-subscribe-form');
+  
+      if ( $form.length > 0 ) {
+        $('form input[type="submit"]').bind('click', function ( event ) {
+            if ( event ) event.preventDefault();
+            // validate_input() is a validation function I wrote, you'll have to substitute this with your own.
+            if ( validate_input($form) ) { register($form); }
+        });
+      }
+    });
+  
+  function register($form) {
+      $.ajax({
+          type: $form.attr('method'),
+          url: $form.attr('action'),
+          data: $form.serialize(),
+          cache       : false,
+          dataType    : 'json',
+          contentType: "application/json; charset=utf-8",
+          error       : function(err) { alert("Could not connect to the registration server. Please try again later."); },
+          success     : function(data) {
+              if (data.result != "success") {
+                  // Something went wrong, do something to notify the user. maybe alert(data.msg);
+              } else {
+                  // It worked, carry on...
+              }
+          }
+      });
+  }</script>
   </body>
 </html>
 

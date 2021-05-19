@@ -326,7 +326,7 @@
           <div><span id="message"></span></div>
           <ul class="list list--horizontal">
             <li><a href="#!" class="text-hover-facebook"><i class="fs-32 icon-facebook-square-brands"></i></a></li>
-            <li><a href="#!" class="text-hover-instagram"><i class="fs-32 icon-instagram-square-brands"></i></a></li>
+            <li><a href="https://www.instagram.com/himonkeyco/" class="text-hover-instagram"><i class="fs-32 icon-instagram-square-brands"></i></a></li>
             <li><a href="#!" class="text-hover-pinterest"><i class="fs-32 icon-pinterest-square-brands"></i></a></li>
           </ul>
         </div>
@@ -343,9 +343,7 @@
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.js"></script>
     <script>
-
-
-    $('#mc-embedded-subscribe-form').submit(function (e) {
+      $('#mc-embedded-subscribe-form').submit(function (e) {
         e.preventDefault();
         $.ajax({
           url: 'https://HIMONKEY.us6.list-manage.com/subscribe/post-json?u=78443e9f748ec9c558d3d817e&amp;id=2392de4950&c=?',
@@ -356,15 +354,19 @@
           contentType: "application/json; charset=utf-8",
           success: function (data) {
             if (data['result'] != "success") {
-              $('#message').html("<span style='color: red;'><i class='fa fa-times'></i> Error. Please try again later.</span>");
-              console.log(data['msg']);
+              if (data['msg'].includes("An email address must contain a single @")) {
+                $('#message').html("<span style='color: red;'><i class='fa fa-times'></i> Enter proper email address.</span>");
+              } else if (data['msg'].includes("The domain portion of the email address is invalid")) {
+                $('#message').html("<span style='color: red;'><i class='fa fa-times'></i> Enter proper email address.</span>");
+              } else if (data['msg'].includes("is already subscribed to")) {
+                $('#message').html("<span style='color: red;'><i class='fa fa-times'></i> Email is already subscribed.</span>");
+              }
             } else {
               $('#message').html("<i class='fa fa-check'></i> Thanks for signing up!");
             }
           }
+        });
       });
-    });
-
     </script>
   </body>
 </html>

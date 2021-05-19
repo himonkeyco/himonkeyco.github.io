@@ -354,7 +354,9 @@
           contentType: "application/json; charset=utf-8",
           success: function (data) {
             if (data['result'] != "success") {
-              if (data['msg'].includes("An email address must contain a single @")) {
+              if (data['msg'].includes("Please enter a value")) {
+                $('#message').html("<span style='color: red;'><i class='fa fa-times'></i> Enter email address.</span>");
+              } else if (data['msg'].includes("An email address must contain a single @")) {
                 $('#message').html("<span style='color: red;'><i class='fa fa-times'></i> Enter proper email address.</span>");
               } else if (data['msg'].includes("The domain portion of the email address is invalid")) {
                 $('#message').html("<span style='color: red;'><i class='fa fa-times'></i> Enter proper email address.</span>");

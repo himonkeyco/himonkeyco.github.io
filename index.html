@@ -343,26 +343,28 @@
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.js"></script>
     <script>
-      $(document).ready(function() {
-			    $('#mc-embedded-subscribe-form').submit(function() {
-			        $("#message").html("Adding your email address...");
-			        $.ajax({
-			            url: 'assets/php/subscribe.php',
-			            type: "POST",
-			            data: $('#mc-embedded-subscribe-form').serialize(),
-			            success: function(msg) 
-			            {
-			                $('#message').html("<i class='fa fa-check'></i> Thanks for signing up!");
-			            },
-			            error: function(msg) 
-			            {
-			                $('#message').html("<span style='color: red;'><i class='fa fa-times'></i> Error. Please try again later.</span>");
-			                console.log(arguments);
-			            }
-			        });
-			        return false;
-			    });
-			});
+
+
+    $('#mc-embedded-subscribe-form').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+          url: 'https://HIMONKEY.us6.list-manage.com/subscribe/post-json?u=78443e9f748ec9c558d3d817e&amp;id=2392de4950&c=?',
+          data: $('#mc-embedded-subscribe-form').serialize(),
+          dataType: 'jsonp',
+          type: 'GET',
+
+          contentType: "application/json; charset=utf-8",
+          success: function (data) {
+            if (data['result'] != "success") {
+              $('#message').html("<span style='color: red;'><i class='fa fa-times'></i> Error. Please try again later.</span>");
+              console.log(data['msg']);
+            } else {
+              $('#message').html("<i class='fa fa-check'></i> Thanks for signing up!");
+            }
+          }
+      });
+    });
+
     </script>
   </body>
 </html>

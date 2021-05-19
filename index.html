@@ -314,7 +314,7 @@
         <div class="row footer">
         <!-- subscribe -->
         <div class="order-2 order-md-3 order-lg-2 col-md-8 col-lg-4">
-          <form action="https://HIMONKEY.us6.list-manage.com/subscribe/post-json?u=78443e9f748ec9c558d3d817e&amp;id=2392de4950&c=?" method="GET" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+          <form action="index.html" method="POST" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
             <h4 class="eyebrow mb-1">Subscribe to Newsletter</h4>
             <div class="input-combined mb-2">
               <input type="email" value="" name="EMAIL" class="email required form-control" id="mce-EMAIL" placeholder="Enter Your Email" required>
@@ -323,6 +323,7 @@
               <span class="input-combined_indicator"></span>
             </div>
           </form>
+          <div><span id="message"></span></div>
           <ul class="list list--horizontal">
             <li><a href="#!" class="text-hover-facebook"><i class="fs-32 icon-facebook-square-brands"></i></a></li>
             <li><a href="#!" class="text-hover-instagram"><i class="fs-32 icon-instagram-square-brands"></i></a></li>
@@ -341,37 +342,28 @@
 
     <script src="assets/js/vendor.min.js"></script>
     <script src="assets/js/app.js"></script>
-    <script>$(document).ready( function () {
-      // I only have one form on the page but you can be more specific if need be.
-      var $form = $('mc-embedded-subscribe');
-  
-      if ( $form.length > 0 ) {
-        $('form input[type="email"]').bind('click', function ( event ) {
-            if ( event ) event.preventDefault();
-            // validate_input() is a validation function I wrote, you'll have to substitute this with your own.
-            if ( validate_input($form) ) { register($form); }
-        });
-      }
-    });
-  
-  function register($form) {
-      $.ajax({
-          type: $form.attr('method'),
-          url: $form.attr('action'),
-          data: $form.serialize(),
-          cache       : false,
-          dataType    : 'json',
-          contentType: "application/json; charset=utf-8",
-          error       : function(err) { alert("Could not connect to the registration server. Please try again later."); },
-          success     : function(data) {
-              if (data.result != "success") {
-                $('#input-combined_indicator').html("<i class='fa fa-check'></i> Thanks for signing up!");
-              } else {
-                  // It worked, carry on...
-              }
-          }
-      });
-  }</script>
+    <script>
+      $(document).ready(function() {
+			    $('#mc-embedded-subscribe-form').submit(function() {
+			        $("#message").html("Adding your email address...");
+			        $.ajax({
+			            url: 'assets/php/subscribe.php',
+			            type: "POST",
+			            data: $('#mc-embedded-subscribe-form').serialize(),
+			            success: function(msg) 
+			            {
+			                $('#message').html("<i class='fa fa-check'></i> Thanks for signing up!");
+			            },
+			            error: function(msg) 
+			            {
+			                $('#message').html("<span style='color: red;'><i class='fa fa-times'></i> Error. Please try again later.</span>");
+			                console.log(arguments);
+			            }
+			        });
+			        return false;
+			    });
+			});
+    </script>
   </body>
 </html>
 
